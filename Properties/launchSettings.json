@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "getMsDosPath": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Workspace\\getDosPath\\getMsDosPath\\bin\\Debug\\net6.0-windows\\getMsDosPath.deps.json\""
+    }
+  }
+}
