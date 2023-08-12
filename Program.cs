@@ -1,5 +1,3 @@
-
-
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -7,8 +5,6 @@ namespace getMsDosPath
 {
     internal static class Program
     {
-
-
         [STAThread]
         static void Main(string[] args)
         {
@@ -20,10 +16,7 @@ namespace getMsDosPath
 
                 if (!string.IsNullOrEmpty(filePath))
                 {
-                    // Convert path to DOS style
                     string dosPath = ConvertToDOSPath(filePath);
-
-                    // Copy DOS path to clipboard
                     CopyTextToClipboard(dosPath);
                 }
                 return;
@@ -31,6 +24,7 @@ namespace getMsDosPath
             
             if (args.Length == 0)
             {
+                // add to context menu when started without arguments
                 AddToContextMenu();
             }
         }
