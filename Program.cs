@@ -41,10 +41,8 @@ namespace getMsDosPath
 
         static string ConvertToDOSPath(string filePath)
         {
-            // Get the full path without the drive letter
-            string fullPathWithoutDrive = filePath.Substring(3);
-            // Create a DOS-style 8.3 path
-            string dosPath = GetDosShortPath(fullPathWithoutDrive);
+            string fullPath = filePath.Substring(3);
+            string dosPath = GetDosShortPath(fullPath);
             return dosPath;
         }
 
@@ -52,7 +50,7 @@ namespace getMsDosPath
         {
             Process process = new Process();
             process.StartInfo.FileName = "cmd.exe";
-            process.StartInfo.Arguments = $"/c echo {filePath} & for %I in (.) do MSDOSOUTPUTPATH: %~sI";
+            process.StartInfo.Arguments = $"/c echo {filePath} & for %I in (.) do echo: %~sI";
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
@@ -61,7 +59,7 @@ namespace getMsDosPath
             string output = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
 
-            string pattern = @"MSDOSOUTPUTPATH:\s*(.+)";
+            string pattern = @"echo:\s*(.+)";
             Match match = Regex.Match(output, pattern);
             if (match.Success)
             {
