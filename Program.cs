@@ -28,8 +28,7 @@ namespace getMsDosPath
                 }
                 return;
             }
-
-            // Handle command-line usage (for testing)
+            
             if (args.Length == 0)
             {
                 AddToContextMenu();
@@ -42,17 +41,10 @@ namespace getMsDosPath
 
         static string ConvertToDOSPath(string filePath)
         {
-            // Get the drive letter
-            string driveLetter = Path.GetPathRoot(filePath).Substring(0, 1);
-
             // Get the full path without the drive letter
             string fullPathWithoutDrive = filePath.Substring(3);
-
             // Create a DOS-style 8.3 path
             string dosPath = GetDosShortPath(fullPathWithoutDrive);
-
-            // Combine the drive letter and DOS-style path
-
             return dosPath;
         }
 
